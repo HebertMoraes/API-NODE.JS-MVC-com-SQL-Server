@@ -2,10 +2,10 @@ const sequelize = require('sequelize');
 const database = require('../db');
 const shema = "";
 
-class Carros extends sequelize.Model { }
+class Faturamento extends sequelize.Model { }
 
 
-Carros.init(
+Faturamento.init(
     {
         Id:
         {
@@ -14,9 +14,9 @@ Carros.init(
             allowNull: false,
             primaryKey: true
         },
-        Nome: 
+        Mes: 
         {
-            type: sequelize.STRING,
+            type: sequelize.INTEGER,
             allowNull: false,
         },
         Descricao:
@@ -24,7 +24,17 @@ Carros.init(
             type: sequelize.STRING,
             allowNull: true,
         },
-        Valor: {
+        Gastos: {
+            type: sequelize.FLOAT,
+            allowNull: false,
+        },
+        Faturamento: 
+        {
+            type: sequelize.FLOAT,
+            allowNull: false,
+        },
+        Lucro: 
+        {
             type: sequelize.FLOAT,
             allowNull: false,
         },
@@ -40,8 +50,8 @@ Carros.init(
         }
     },
     {
-        sequelize: database, modelName: 'tbCarros', shema
+        sequelize: database, modelName: 'tbFaturamento', shema
     }
 )
 
-module.exports = Carros;
+module.exports = Faturamento;

@@ -2,10 +2,10 @@ const sequelize = require('sequelize');
 const database = require('../db');
 const shema = "";
 
-class Carros extends sequelize.Model { }
+class Sale extends sequelize.Model { }
 
 
-Carros.init(
+Sale.init(
     {
         Id:
         {
@@ -14,7 +14,7 @@ Carros.init(
             allowNull: false,
             primaryKey: true
         },
-        Nome: 
+        NomeCarro: 
         {
             type: sequelize.STRING,
             allowNull: false,
@@ -23,6 +23,20 @@ Carros.init(
         {
             type: sequelize.STRING,
             allowNull: true,
+        },
+        Quantidade: {
+            type: sequelize.INTEGER,
+            allowNull: false,
+        },
+        NomeComprador: 
+        {
+            type: sequelize.STRING,
+            allowNull: false,
+        },
+        NomeVendedor: 
+        {
+            type: sequelize.STRING,
+            allowNull: false,
         },
         Valor: {
             type: sequelize.FLOAT,
@@ -40,8 +54,8 @@ Carros.init(
         }
     },
     {
-        sequelize: database, modelName: 'tbCarros', shema
+        sequelize: database, modelName: 'tbSales', shema
     }
 )
 
-module.exports = Carros;
+module.exports = Sale;
