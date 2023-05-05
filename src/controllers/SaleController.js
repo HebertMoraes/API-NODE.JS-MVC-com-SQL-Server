@@ -4,11 +4,10 @@ module.exports =
 {
     async GetAllSales(req, res) {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             const sales = await ModelSale.findAll();
             return res.json(sales);
-
         } catch (erro) {
             return console.error("Erro no GetAll : ", erro);
         }
@@ -18,7 +17,7 @@ module.exports =
         //Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
         res.header("Access-Control-Allow-Origin", "*");
         //Quais são os métodos que a conexão pode realizar na API
-        res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+        // res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
 
         try {
             const sales = await ModelSale.create(

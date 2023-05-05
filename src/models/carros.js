@@ -19,6 +19,14 @@ Carros.init(
             type: sequelize.STRING,
             allowNull: false,
         },
+        Marca: {
+            type: sequelize.STRING,
+            allowNull: false,
+        },
+        Ano: {
+            type: sequelize.INTEGER,
+            allowNull: false,
+        },
         Descricao:
         {
             type: sequelize.STRING,
@@ -32,6 +40,10 @@ Carros.init(
         {
             type: sequelize.DATE,
             allowNull: false,
+        },
+        ImgUrl: {
+            type: sequelize.STRING,
+            allowNull: true,
         },
         DataAtualizacao:
         {

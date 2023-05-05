@@ -37,6 +37,6 @@ routes.post('/UpdateFaturamento', controllerFaturamento.UpdateFaturamento);
 
 routes.post('/GetOneFaturamento', controllerFaturamento.GetOneFaturamento); // MUDAMOS PARA POST
 
-routes.post('/Deletefaturamento', controllerFaturamento.DeleteFaturamento);
+routes.post('/DeleteFaturamento', controllerFaturamento.DeleteFaturamento);
 
 module.exports = routes;

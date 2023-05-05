@@ -25,9 +25,12 @@ module.exports =
                 {
                     //Codigo: req.body.Codigo, // Comentado para gerar automatico
                     Nome: req.body.Nome, 
+                    Marca: req.body.Marca, 
+                    Ano: req.body.Ano,
                     Descricao: req.body.Descricao,
                     Valor: req.body.Valor,
                     DataCriacao: req.body.DataCriacao,
+                    ImgUrl: req.body.ImgUrl,
                     DataAtualizacao: null
                 }
             );
@@ -44,9 +47,12 @@ module.exports =
             const carro = await ModelCarros.findByPk(req.body.Id);
             if (carro) {
                 carro.Nome = req.body.Nome;
+                carro.Marca = req.body.Marca;
+                carro.Ano = req.body.Ano;
                 carro.Descricao = req.body.Descricao;
                 carro.Valor = req.body.Valor;
                 carro.DataCriacao = req.body.DataCriacao;
+                carro.ImgUrl = req.body.ImgUrl;
                 carro.DataAtualizacao = new Date();
                 await carro.save();
             }
