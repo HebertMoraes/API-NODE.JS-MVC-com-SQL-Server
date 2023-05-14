@@ -28,7 +28,9 @@ module.exports =
                     Marca: req.body.Marca, 
                     Ano: req.body.Ano,
                     Descricao: req.body.Descricao,
-                    Valor: req.body.Valor,
+                    ValorMin: req.body.ValorMin,
+                    ValorMedia: req.body.ValorMedia,
+                    ValorMax: req.body.ValorMax,
                     DataCriacao: req.body.DataCriacao,
                     ImgUrl: req.body.ImgUrl,
                     DataAtualizacao: null
@@ -50,7 +52,9 @@ module.exports =
                 carro.Marca = req.body.Marca;
                 carro.Ano = req.body.Ano;
                 carro.Descricao = req.body.Descricao;
-                carro.Valor = req.body.Valor;
+                carro.ValorMin = req.body.ValorMin;
+                carro.ValorMedia = req.body.ValorMedia;
+                carro.ValorMax = req.body.ValorMax;
                 carro.DataCriacao = req.body.DataCriacao;
                 carro.ImgUrl = req.body.ImgUrl;
                 carro.DataAtualizacao = new Date();

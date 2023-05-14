@@ -32,7 +32,15 @@ Carros.init(
             type: sequelize.STRING,
             allowNull: true,
         },
-        Valor: {
+        ValorMin: {
+            type: sequelize.FLOAT,
+            allowNull: false,
+        },
+        ValorMedia: {
+            type: sequelize.FLOAT,
+            allowNull: false,
+        },
+        ValorMax: {
             type: sequelize.FLOAT,
             allowNull: false,
         },
