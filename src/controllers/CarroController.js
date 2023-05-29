@@ -1,16 +1,22 @@
 const ModelCarros = require('../models/carros');
+const jwt = require('jsonwebtoken');
 
 module.exports =
 {
     async GetAllCars(req, res) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        
+        const { authorization } = req.headers;
+        const acess_token = authorization.split(' ')[1];
         try {
+            jwt.verify(acess_token, 'exemploDeSecretJWT');
             const carros = await ModelCarros.findAll();
             return res.json(carros);
-
-        } catch (erro) {
-            return console.error("Erro no GetAll : ", erro);
+        } catch (error) {
+            // res.status(401).send("Unauthorized");
+            res.status(498).json({ message: 'Acess_token expirado!' });
+            // return console.error("Erro no GetAll : ", erro);
         }
     },
 
@@ -24,8 +30,8 @@ module.exports =
             const carro = await ModelCarros.create(
                 {
                     //Codigo: req.body.Codigo, // Comentado para gerar automatico
-                    Nome: req.body.Nome, 
-                    Marca: req.body.Marca, 
+                    Nome: req.body.Nome,
+                    Marca: req.body.Marca,
                     Ano: req.body.Ano,
                     Descricao: req.body.Descricao,
                     ValorMin: req.body.ValorMin,
