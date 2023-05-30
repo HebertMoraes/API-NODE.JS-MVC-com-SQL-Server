@@ -5,7 +5,7 @@ module.exports =
 {
     async GetAllCars(req, res) {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         
         const { authorization } = req.headers;
         const acess_token = authorization.split(' ')[1];
@@ -26,75 +26,119 @@ module.exports =
         //Quais são os métodos que a conexão pode realizar na API
         res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
 
+        const { authorization } = req.headers;
+        const acess_token = authorization.split(' ')[1];
         try {
-            const carro = await ModelCarros.create(
-                {
-                    //Codigo: req.body.Codigo, // Comentado para gerar automatico
-                    Nome: req.body.Nome,
-                    Marca: req.body.Marca,
-                    Ano: req.body.Ano,
-                    Descricao: req.body.Descricao,
-                    ValorMin: req.body.ValorMin,
-                    ValorMedia: req.body.ValorMedia,
-                    ValorMax: req.body.ValorMax,
-                    DataCriacao: req.body.DataCriacao,
-                    ImgUrl: req.body.ImgUrl,
-                    DataAtualizacao: null
-                }
-            );
-            return res.json(carro);
+            jwt.verify(acess_token, 'exemploDeSecretJWT');
 
-        } catch (erro) {
-            return console.error("Erro na Create : ", erro);
+            try {            
+                const carro = await ModelCarros.create(
+                    {
+                        //Codigo: req.body.Codigo, // Comentado para gerar automatico
+                        Nome: req.body.Nome,
+                        Marca: req.body.Marca,
+                        Ano: req.body.Ano,
+                        Descricao: req.body.Descricao,
+                        ValorMin: req.body.ValorMin,
+                        ValorMedia: req.body.ValorMedia,
+                        ValorMax: req.body.ValorMax,
+                        DataCriacao: req.body.DataCriacao,
+                        ImgUrl: req.body.ImgUrl,
+                        DataAtualizacao: null
+                    }
+                );
+                return res.json(carro);
+    
+            } catch (erro) {
+                return console.error("Erro na Create : ", erro);
+            }
+
+        } catch (error) {
+            // res.status(401).send("Unauthorized");
+            res.status(498).json({ message: 'Acess_token expirado!' });
+            // return console.error("Erro no GetAll : ", erro);
         }
     },
 
     async UpdateCar(req, res) {
+        const { authorization } = req.headers;
+        const acess_token = authorization.split(' ')[1];
+
         try {
+            jwt.verify(acess_token, 'exemploDeSecretJWT');
 
-            const carro = await ModelCarros.findByPk(req.body.Id);
-            if (carro) {
-                carro.Nome = req.body.Nome;
-                carro.Marca = req.body.Marca;
-                carro.Ano = req.body.Ano;
-                carro.Descricao = req.body.Descricao;
-                carro.ValorMin = req.body.ValorMin;
-                carro.ValorMedia = req.body.ValorMedia;
-                carro.ValorMax = req.body.ValorMax;
-                carro.DataCriacao = req.body.DataCriacao;
-                carro.ImgUrl = req.body.ImgUrl;
-                carro.DataAtualizacao = new Date();
-                await carro.save();
+            try {
+
+                const carro = await ModelCarros.findByPk(req.body.Id);
+                if (carro) {
+                    carro.Nome = req.body.Nome;
+                    carro.Marca = req.body.Marca;
+                    carro.Ano = req.body.Ano;
+                    carro.Descricao = req.body.Descricao;
+                    carro.ValorMin = req.body.ValorMin;
+                    carro.ValorMedia = req.body.ValorMedia;
+                    carro.ValorMax = req.body.ValorMax;
+                    carro.DataCriacao = req.body.DataCriacao;
+                    carro.ImgUrl = req.body.ImgUrl;
+                    carro.DataAtualizacao = new Date();
+                    await carro.save();
+                }
+    
+                return res.json(carro);
+    
+            } catch (erro) {
+                return console.error("Erro na Update : ", erro);
             }
-
-            return res.json(carro);
-
-        } catch (erro) {
-            return console.error("Erro na Update : ", erro);
+        } catch (error) {
+            // res.status(401).send("Unauthorized");
+            res.status(498).json({ message: 'Acess_token expirado!' });
+            // return console.error("Erro no GetAll : ", erro);
         }
     },
 
     async GetOneCar(req, res) {
+        const { authorization } = req.headers;
+        const acess_token = authorization.split(' ')[1];
+
         try {
+            jwt.verify(acess_token, 'exemploDeSecretJWT');
 
-            const carro = await ModelCarros.findByPk(req.body.Id);
+            try {
 
-            return res.json(carro);
-
-        } catch (erro) {
-            return console.error("Erro no GetOne : ", erro);
+                const carro = await ModelCarros.findByPk(req.body.Id);
+    
+                return res.json(carro);
+    
+            } catch (erro) {
+                return console.error("Erro no GetOne : ", erro);
+            }
+        } catch (error) {
+            // res.status(401).send("Unauthorized");
+            res.status(498).json({ message: 'Acess_token expirado!' });
+            // return console.error("Erro no GetAll : ", erro);
         }
     },
 
     async DeleteCar(req, res) {
+        const { authorization } = req.headers;
+        const acess_token = authorization.split(' ')[1];
+
         try {
+            jwt.verify(acess_token, 'exemploDeSecretJWT');
 
-            const carro = await ModelCarros.findByPk(req.body.Id);
-            await carro.destroy();
-            return res.json(carro);
+            try {
 
-        } catch (erro) {
-            return console.error("Erro no Delete : ", erro);
+                const carro = await ModelCarros.findByPk(req.body.Id);
+                await carro.destroy();
+                return res.json(carro);
+    
+            } catch (erro) {
+                return console.error("Erro no Delete : ", erro);
+            }
+        } catch (error) {
+            // res.status(401).send("Unauthorized");
+            res.status(498).json({ message: 'Acess_token expirado!' });
+            // return console.error("Erro no GetAll : ", erro);
         }
     }
 }
