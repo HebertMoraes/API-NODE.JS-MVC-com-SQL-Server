@@ -55,37 +55,6 @@ module.exports =
             res.status(498).json({ message: 'Acess_token expirado!' });
             // return console.error("Erro no GetAll : ", erro);
         }
-
-
-        // const { authorization } = req.headers;
-        // const acess_token = authorization.split(' ')[1];
-        // try {
-        //     jwt.verify(acess_token, 'exemploDeSecretJWT');
-            
-        //     try {
-        //         const sale = await ModelSale.create(
-        //             {
-        //                 //Codigo: req.body.Codigo, // Comentado para gerar automatico
-        //                 NomeCarro: req.body.NomeCarro, 
-        //                 Descricao: req.body.Descricao,
-        //                 Quantidade: req.body.Quantidade,
-        //                 NomeComprador: req.body.NomeComprador,
-        //                 NomeVendedor: req.body.NomeVendedor,
-        //                 Valor: req.body.Valor,
-        //                 DataCriacao: req.body.DataCriacao,
-        //                 DataAtualizacao: null
-        //             }
-        //         );
-        //         return res.json(sale);
-
-        //     } catch (erro) {
-        //         return console.error("Erro na Create : ", erro);
-        //     }
-        // } catch (error) {
-        //     // res.status(401).send("Unauthorized");
-        //     res.status(498).json({ message: 'Mas que merda!' });
-        //     // return console.error("Erro no GetAll : ", erro);
-        // }
     },
 
     async UpdateSale(req, res) {
